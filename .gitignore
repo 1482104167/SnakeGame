@@ -1,0 +1,81 @@
+# ============================================
+# Visual Studio / MSBuild 生成物
+# ============================================
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+*.opendb
+*.aps
+*.sdf
+*.opensdf
+*.cachefile
+*.psess
+*.vsp
+*.vspx
+*.ilk
+*.idb
+*.iobj
+*.ipdb
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.tlog
+*.lastbuildstate
+*.log
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.exp
+*.res
+*.ifc
+*.pch
+*.gch
+*.recipe
+*.FileListAbsolute.txt
+
+# MSBuild / 输出目录（任意层级）
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Bb]uild/
+x64/
+x86/
+ARM/
+ARM64/
+
+# C++ 模块 / 预编译头中间产物
+*.ifc.dt
+*.ifc.dt.*
+*.ixx.obj
+*.ixx.obj.*
+*_DAACFAB9C647F32F.ifc.dt*
+
+# ============================================
+# 通用
+# ============================================
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*~
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 编译数据库与测试/覆盖率产物
+compile_commands.json
+.vsidx
+*.gcno
+*.gcda
+*.gcov
+cover/
