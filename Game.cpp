@@ -180,8 +180,8 @@ void Game::mainLoop() {
 	};
 
 	GameStatus lastStatus = info.status();
-	ch::steady_clock::time_point lastUpdate = ch::steady_clock::now();
-	ch::steady_clock::duration interval = normalInterval() / 2;
+	auto lastUpdate = ch::steady_clock::now();
+	auto interval = normalInterval() / 2;
 
 	while (true) {
 		std::this_thread::sleep_for(ch::milliseconds(5));
@@ -216,14 +216,16 @@ void Game::mainLoop() {
 		//处理游戏逻辑和画面渲染
 		if (auto now = ch::steady_clock::now(); now - lastUpdate >= interval) {
 			engine_.update();
-			renderer_.drawMapInnerCells(map);
-			renderer_.drawActiveInfo(info);
 			//将上次更新时间点后移，而不直接设为当前时间，可消除累计误差，提高稳定性
 			lastUpdate += interval;
 			interval = normalInterval();
 			//二次检测，避免落后过长时间导致暴力追赶
 			if (now - lastUpdate >= interval) {
 				lastUpdate = ch::steady_clock::now();
+			}
+			else {
+				renderer_.drawMapInnerCells(map);
+				renderer_.drawActiveInfo(info);
 			}
 		}
 	}

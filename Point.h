@@ -3,12 +3,8 @@
 
 template<typename T>
 struct Point {
-	T x = 0;
-	T y = 0;
-
-	//构造函数
-	constexpr Point() = default;
-	constexpr explicit Point(T x, T y) : x(x), y(y) {}
+	T x;
+	T y;
 
 	//比较运算符
 	constexpr bool operator==(const Point&) const = default;

@@ -12,4 +12,6 @@ int main() {
 
 	//运行游戏
 	game.run();
+
+	Console::clear();
 }

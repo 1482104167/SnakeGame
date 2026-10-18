@@ -84,7 +84,7 @@ void Renderer::drawEnterMessage() const {
 
 	std::vector<std::string> text = {
 		"贪吃蛇游戏",
-		"ver: 2026.10.2",
+		"ver: 2026.10.9",
 		"",
 		"* 为避免输入法按键冲突，建议开启大写锁定",
 		"* 若出现显示错误，可尝试双击空格刷新页面",
