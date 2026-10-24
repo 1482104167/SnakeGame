@@ -24,6 +24,9 @@ void GameEngine::reset() {
 
 	map_.set(snake_.tail(), Map::CellType::SnakeTail);
 	map_.set(snake_.head(), Map::CellType::SnakeHead);
+
+	moreFoodCounter_ = 0;
+	moreFoodThreshold_ = 0;
 }
 
 void GameEngine::start() {
@@ -38,12 +41,16 @@ void GameEngine::update() {
 	auto realizeMoreFood = [this]() {
 		if (!settings_.isMoreFood()) { return; }
 
-		//达到一定进度后概率生成
-		if (snake_.length() - snake_.initLength < 10) { return; }
+		//蛇达到一定长度后，才开始生成红色食物（第一次达到时会立即生成）
+		if (snake_.length() - snake_.initLength < 15) { return; }
 
-		if (utils::getRandom(1, 10000) <= 100) {
-			map_.generate(Map::CellType::RedFood);
-		}
+		//生成计数器自增，并检测是否达到阈值
+		if (++moreFoodCounter_ < moreFoodThreshold_) { return; }
+
+		//生成成功，重置计数器，并重新随机指定新阈值
+		map_.generate(Map::CellType::RedFood);
+		moreFoodCounter_ = 0;
+		moreFoodThreshold_ = utils::getRandom(50, 150);
 	};
 
 	Point nextHead = snake_.nextHead();

@@ -25,6 +25,11 @@ public:
 	Settings& settings() { return settings_; }
 
 private:
+	//多食物生成计数器
+	int moreFoodCounter_ = 0;
+	//多食物生成阈值（初始为 0，后续会在基准值附近随机浮动）
+	int moreFoodThreshold_ = 0;
+
 	Map map_;
 	Snake snake_;
 	Info info_;
