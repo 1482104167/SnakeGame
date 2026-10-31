@@ -1,17 +1,29 @@
 ﻿//main.cpp
 #include "Console.h"
-#include "Game.h"
+#include "GameEngine.h"
+#include "PageBase.h"
+#include "Pages.h"
+#include "Renderer.h"
+#include "SysTimerRes.h"
 
 import std;
 
 //全局对象声明
-Game game;
+GameEngine engine;
+Renderer renderer;
+GameContext ctx = { engine, renderer };
 
 int main() {
 	Console::setCursorVis(false);
 
-	//运行游戏
-	game.run();
+	//提高系统计时器分辨率，使 sleep 延时更精确
+	SysTimerRes timerRes(1);
+	std::this_thread::sleep_for(std::chrono::milliseconds(300));
+
+	std::unique_ptr<PageBase> page = std::make_unique<EnterPage>();
+	while (page) {
+		page = page->run(ctx);
+	}
 
 	Console::clear();
 }

@@ -44,6 +44,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Pages.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -84,6 +87,12 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="PageBase.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Pages.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
