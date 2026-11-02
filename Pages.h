@@ -5,7 +5,7 @@
 #include <memory>
 
 //进入页面
-class EnterPage : public PageBase {
+class EnteringPage : public PageBase {
 public:
 	std::unique_ptr<PageBase> run(GameContext& ctx) override;
 };
@@ -17,7 +17,7 @@ public:
 };
 
 //游玩页面
-class PlayPage : public PageBase {
+class PlayingPage : public PageBase {
 public:
 	std::unique_ptr<PageBase> run(GameContext& ctx) override;
 

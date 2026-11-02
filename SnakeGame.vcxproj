@@ -25,7 +25,6 @@
     <ClCompile Include="Pages.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="SysTimerRes.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -41,7 +40,6 @@
     <ClInclude Include="PageBase.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SysTimerRes.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Point.h" />

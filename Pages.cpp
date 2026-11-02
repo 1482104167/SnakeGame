@@ -11,7 +11,7 @@
 
 import std;
 
-std::unique_ptr<PageBase> EnterPage::run(GameContext& ctx) {
+std::unique_ptr<PageBase> EnteringPage::run(GameContext& ctx) {
 	auto& renderer = ctx.renderer;
 
 	renderer.drawEnterMessage();
@@ -40,7 +40,7 @@ std::unique_ptr<PageBase> EnterPage::run(GameContext& ctx) {
 			switch (int key = Input::waitKey()) {
 			case ' ':
 				Console::clear();
-				return std::make_unique<EnterPage>();
+				return std::make_unique<EnteringPage>();
 			default:
 				Input::pushKey(key);
 			}
@@ -64,17 +64,17 @@ std::unique_ptr<PageBase> StartingPage::run(GameContext& ctx) {
 	while (true) {
 		switch (Input::waitKey()) {
 		case 's': case 'S':
-			return std::make_unique<PlayPage>();
+			return std::make_unique<PlayingPage>();
 		case 'q': case 'Q':
 			renderer.clearMapInnerCells(map);
 			renderer.clearBelowMapText();
 			renderer.clearMapWall(map);
-			return std::make_unique<EnterPage>();
+			return std::make_unique<EnteringPage>();
 		}
 	}
 }
 
-std::unique_ptr<PageBase> PlayPage::run(GameContext& ctx) {
+std::unique_ptr<PageBase> PlayingPage::run(GameContext& ctx) {
 	auto& engine = ctx.engine;
 	auto& renderer = ctx.renderer;
 	auto& map = engine.map();
@@ -93,7 +93,7 @@ std::unique_ptr<PageBase> PlayPage::run(GameContext& ctx) {
 	case GameStatus::Quit:
 		//若为中途退出，则直接返回上一页，不再显示结束信息
 		clearPage();
-		return std::make_unique<EnterPage>();
+		return std::make_unique<EnteringPage>();
 	default:
 		renderer.drawOverAnimation(map, status);
 	}
@@ -109,12 +109,12 @@ std::unique_ptr<PageBase> PlayPage::run(GameContext& ctx) {
 			return std::make_unique<StartingPage>();
 		case 'q': case 'Q':
 			clearPage();
-			return std::make_unique<EnterPage>();
+			return std::make_unique<EnteringPage>();
 		}
 	}
 }
 
-void PlayPage::mainLoop(GameContext& ctx) {
+void PlayingPage::mainLoop(GameContext& ctx) {
 	auto& engine = ctx.engine;
 	auto& renderer = ctx.renderer;
 	auto& map = engine.map();
@@ -217,7 +217,7 @@ std::unique_ptr<PageBase> SettingsPage::run(GameContext& ctx) {
 			break;
 		case 'q': case 'Q':
 			renderer.clearSettings();
-			return std::make_unique<EnterPage>();
+			return std::make_unique<EnteringPage>();
 		default:
 			continue;
 		}

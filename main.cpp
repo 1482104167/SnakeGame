@@ -20,7 +20,7 @@ int main() {
 	SysTimerRes timerRes(1);
 	std::this_thread::sleep_for(std::chrono::milliseconds(300));
 
-	std::unique_ptr<PageBase> page = std::make_unique<EnterPage>();
+	std::unique_ptr<PageBase> page = std::make_unique<EnteringPage>();
 	while (page) {
 		page = page->run(ctx);
 	}

@@ -16,9 +16,6 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -50,9 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
