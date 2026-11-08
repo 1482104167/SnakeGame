@@ -135,15 +135,21 @@ void PlayingPage::mainLoop(GameContext& ctx) {
 	auto lastUpdate = ch::steady_clock::now();
 	auto interval = normalInterval() / 2;
 
+	//创建一个线程，单独处理按键输入
+	std::jthread handleKeyInput([&](std::stop_token st) {
+		while (!st.stop_requested()) {
+			if (auto key = Input::pullKey()) {
+				if (auto cmd = toGameCommand(*key)) {
+					engine.handleCommand(*cmd);
+				}
+			}
+
+			std::this_thread::sleep_for(ch::milliseconds(5));
+		}
+	});
+
 	while (true) {
 		std::this_thread::sleep_for(ch::milliseconds(5));
-
-		//处理按键输入
-		while (auto key = Input::pullKey()) {
-			if (auto cmd = toGameCommand(*key)) {
-				engine.handleCommand(*cmd);
-			}
-		}
 
 		//处理游戏状态
 		switch (GameStatus status = info.status()) {
@@ -171,11 +177,8 @@ void PlayingPage::mainLoop(GameContext& ctx) {
 			//将上次更新时间点后移，而不直接设为当前时间，可消除累计误差，提高稳定性
 			lastUpdate += interval;
 			interval = normalInterval();
-			//二次检测，避免落后过长时间导致暴力追赶
-			if (now - lastUpdate >= interval) {
-				lastUpdate = ch::steady_clock::now();
-			}
-			else {
+			//若落后过长时间则暂时停止渲染，优先保证游戏进程正常前进
+			if (now - lastUpdate < interval) {
 				renderer.drawMapInnerCells(map);
 				renderer.drawActiveInfo(info);
 			}

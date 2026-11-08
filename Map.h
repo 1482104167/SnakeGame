@@ -19,15 +19,7 @@ public:
 	//构造函数：给地图数组预留内存空间
 	Map();
 
-	//禁用拷贝构造和赋值
-	Map(const Map&) = delete;
-	Map& operator=(const Map&) = delete;
-
-	//默认移动构造和赋值
-	Map(Map&&) noexcept = default;
-	Map& operator=(Map&&) noexcept = default;
-
-	//重置数据：清空数据，设置墙体
+	//重置数据：清空地图并重新设置墙体
 	void reset();
 	//获取指定坐标单元格类型
 	CellType get(Point<int> pos) const;

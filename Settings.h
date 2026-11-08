@@ -3,17 +3,6 @@
 
 class Settings {
 public:
-	//默认构造函数
-	Settings() = default;
-
-	//禁用拷贝构造和赋值
-	Settings(const Settings&) = delete;
-	Settings& operator=(const Settings&) = delete;
-
-	//默认移动构造和赋值
-	Settings(Settings&&) noexcept = default;
-	Settings& operator=(Settings&&) noexcept = default;
-
 	//获取多食物设置
 	bool isNoRedFood() const { return isNoRedFood_; }
 	//获取无界设置

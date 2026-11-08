@@ -37,6 +37,17 @@ void GameEngine::start() {
 void GameEngine::update() {
 	snake_.applyNextDir();
 
+	Point nextHead = snake_.nextHead();
+
+	//实现无界设置
+	if (settings_.isUnbounded()) {
+		auto& [x, y] = nextHead;
+		if (x == 0) { x = map_.cols - 2; }
+		else if (x == map_.cols - 1) { x = 1; }
+		else if (y == 0) { y = map_.rows - 2; }
+		else if (y == map_.rows - 1) { y = 1; }
+	}
+
 	//实现红色食物设置
 	auto realizeMoreFood = [this]() {
 		if (settings_.isNoRedFood()) { return; }
@@ -52,17 +63,6 @@ void GameEngine::update() {
 		moreFoodCounter_ = 0;
 		moreFoodThreshold_ = utils::getRandom(50, 150);
 	};
-
-	Point nextHead = snake_.nextHead();
-
-	//实现无界设置
-	if (settings_.isUnbounded()) {
-		auto& [x, y] = nextHead;
-		if (x == 0) { x = map_.cols - 2; }
-		else if (x == map_.cols - 1) { x = 1; }
-		else if (y == 0) { y = map_.rows - 2; }
-		else if (y == map_.rows - 1) { y = 1; }
-	}
 
 	switch (map_.get(nextHead)) {
 	case Map::CellType::Wall:

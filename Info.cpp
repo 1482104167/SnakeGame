@@ -4,7 +4,9 @@
 import std;
 
 void Info::reset() {
-	*this = Info();
+	speed_ = initSpeed;
+	score_ = 0;
+	status_ = GameStatus::Idle;
 }
 
 void Info::increaseSpeed() {

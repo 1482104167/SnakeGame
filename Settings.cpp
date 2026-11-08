@@ -2,7 +2,10 @@
 #include "Settings.h"
 
 void Settings::reset() {
-	*this = Settings();
+	isNoRedFood_ = false;
+	isUnbounded_ = false;
+	isAllowPause_ = false;
+	isInvincible_ = false;
 }
 
 void Settings::toggleIsNoRedFood() {

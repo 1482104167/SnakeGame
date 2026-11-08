@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Point.h"
+#include <mutex>
 #include <queue>
 
 //方向
@@ -13,17 +14,6 @@ class Snake {
 public:
 	//蛇体初始长度
 	static constexpr int initLength = 3;
-
-	//默认构造函数
-	Snake() = default;
-
-	//禁用拷贝构造和赋值
-	Snake(const Snake&) = delete;
-	Snake& operator=(const Snake&) = delete;
-
-	//默认移动构造和赋值
-	Snake(Snake&&) noexcept = default;
-	Snake& operator=(Snake&&) noexcept = default;
 
 	//重置数据
 	void reset();
@@ -47,10 +37,11 @@ public:
 	void applyNextDir();
 
 private:
-	//待处理方向队列最大长度（允许缓存一定数量方向，优化操作手感）
+	//待处理方向队列最大长度（允许缓存一定数量方向，用于优化操作手感）
 	static constexpr size_t pendingDirsMaxSize = 3;
 
 	std::queue<Point<int>> snake_;
 	std::queue<Direction> pendingDirs_;
+	std::mutex dirMutex_;
 	Direction dir_ = Direction::Up;
 };

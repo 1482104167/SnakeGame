@@ -3,8 +3,12 @@
 
 #include "Point.h"
 
+import std;
+
 void Snake::reset() {
-	*this = Snake();
+	snake_ = {};
+	clearPendingDirs();
+	dir_ = Direction::Up;
 }
 
 int Snake::length() const {
@@ -27,16 +31,17 @@ Point<int> Snake::tail() const {
 }
 
 Point<int> Snake::nextHead() const {
-	Point result = head();
+	int dx = 0;
+	int dy = 0;
 
 	switch (dir_) {
-	case Direction::Up:		--result.y; break;
-	case Direction::Left:	--result.x; break;
-	case Direction::Down:	++result.y; break;
-	case Direction::Right:	++result.x; break;
+	case Direction::Up:		--dy; break;
+	case Direction::Left:	--dx; break;
+	case Direction::Down:	++dy; break;
+	case Direction::Right:	++dx; break;
 	}
 
-	return result;
+	return head() + Point(dx, dy);
 }
 
 void Snake::addHead(Point<int> nextHead) {
@@ -56,6 +61,8 @@ void Snake::pushPendingDirs(Direction newDir) {
 			(dir1 == Left && dir2 == Right) || (dir1 == Right && dir2 == Left);
 	};
 
+	std::lock_guard<std::mutex> lock(dirMutex_);
+
 	Direction lastDir = pendingDirs_.empty() ? dir_ : pendingDirs_.back();
 	//拦截相同或相反的方向
 	if (newDir == lastDir || isOpposite(newDir, lastDir)) { return; }
@@ -70,6 +77,8 @@ void Snake::clearPendingDirs() {
 }
 
 void Snake::applyNextDir() {
+	std::lock_guard<std::mutex> lock(dirMutex_);
+
 	if (!pendingDirs_.empty()) {
 		dir_ = pendingDirs_.front();
 		pendingDirs_.pop();
