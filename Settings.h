@@ -15,28 +15,28 @@ public:
 	Settings& operator=(Settings&&) noexcept = default;
 
 	//获取多食物设置
-	bool isMoreFood() const { return isMoreFood_; }
+	bool isNoRedFood() const { return isNoRedFood_; }
 	//获取无界设置
 	bool isUnbounded() const { return isUnbounded_; }
 	//获取暂停设置
-	bool canPause() const { return canPause_; }
+	bool isAllowPause() const { return isAllowPause_; }
 	//获取无敌设置
 	bool isInvincible() const { return isInvincible_; }
 
 	//重置数据
 	void reset();
 	//调节多食物设置
-	void toggleIsMoreFood();
+	void toggleIsNoRedFood();
 	//调节无界设置
 	void toggleIsUnbounded();
 	//调节暂停设置
-	void toggleCanPause();
+	void toggleIsAllowPause();
 	//调节无敌设置
 	void toggleIsInvincible();
 
 private:
-	bool isMoreFood_ = true;
+	bool isNoRedFood_ = false;
 	bool isUnbounded_ = false;
-	bool canPause_ = false;
+	bool isAllowPause_ = false;
 	bool isInvincible_ = false;
 };

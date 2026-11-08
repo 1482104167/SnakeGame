@@ -175,10 +175,10 @@ void Renderer::drawSettings(const Settings& settings) const {
 	std::vector<std::string> text = {
 		"设置",
 		"",
-		formatSettingItem("额外生成食物", settings.isMoreFood()),
-		formatSettingItem("无界模式", settings.isUnbounded()),
-		formatSettingItem("游戏中可暂停", settings.canPause()),
-		formatSettingItem("无敌模式", settings.isInvincible()),
+		formatSettingItem("禁止生成红色食物", settings.isNoRedFood()),
+		formatSettingItem("无界模式（穿墙回绕）", settings.isUnbounded()),
+		formatSettingItem("允许游戏中暂停", settings.isAllowPause()),
+		formatSettingItem("无敌模式（谨慎开启）", settings.isInvincible()),
 		"",
 	};
 
@@ -200,13 +200,13 @@ void Renderer::drawSettings(const Settings& settings) const {
 void Renderer::redrawSettings(const Settings& settings, size_t item) const {
 	std::vector<std::tuple<Point<int>, std::string>> textInfo = {
 		std::make_tuple(Point(0, 2),
-			formatSettingItem("额外生成食物", settings.isMoreFood())),
+			formatSettingItem("禁止生成红色食物", settings.isNoRedFood())),
 		std::make_tuple(Point(0, 1),
-			formatSettingItem("无界模式", settings.isUnbounded())),
+			formatSettingItem("无界模式（穿墙回绕）", settings.isUnbounded())),
 		std::make_tuple(Point(0, 1),
-			formatSettingItem("游戏中可暂停", settings.canPause())),
+			formatSettingItem("允许游戏中暂停", settings.isAllowPause())),
 		std::make_tuple(Point(0, 1),
-			formatSettingItem("无敌模式", settings.isInvincible())),
+			formatSettingItem("无敌模式（谨慎开启）", settings.isInvincible())),
 	};
 
 	Point printPos = defaultOff;
@@ -276,5 +276,5 @@ void Renderer::printCenter(std::string_view text) const {
 }
 
 std::string Renderer::formatSettingItem(std::string_view title, bool option) const {
-	return std::format("{:<14} < {:<3} >", title, (option ? "ON" : "OFF"));
+	return std::format("{:<20} < {:<3} >", title, (option ? "ON" : "OFF"));
 }

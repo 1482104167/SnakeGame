@@ -193,9 +193,9 @@ std::unique_ptr<PageBase> SettingsPage::run(GameContext& ctx) {
 	renderer.redrawSettings(settings, nowItem);
 
 	std::vector<std::function<void()>> toggleSetting = {
-		[&]() { settings.toggleIsMoreFood(); },
+		[&]() { settings.toggleIsNoRedFood(); },
 		[&]() { settings.toggleIsUnbounded(); },
-		[&]() { settings.toggleCanPause(); },
+		[&]() { settings.toggleIsAllowPause(); },
 		[&]() { settings.toggleIsInvincible(); },
 	};
 

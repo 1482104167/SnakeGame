@@ -5,16 +5,16 @@ void Settings::reset() {
 	*this = Settings();
 }
 
-void Settings::toggleIsMoreFood() {
-	isMoreFood_ = !isMoreFood_;
+void Settings::toggleIsNoRedFood() {
+	isNoRedFood_ = !isNoRedFood_;
 }
 
 void Settings::toggleIsUnbounded() {
 	isUnbounded_ = !isUnbounded_;
 }
 
-void Settings::toggleCanPause() {
-	canPause_ = !canPause_;
+void Settings::toggleIsAllowPause() {
+	isAllowPause_ = !isAllowPause_;
 }
 
 void Settings::toggleIsInvincible() {

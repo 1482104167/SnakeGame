@@ -37,9 +37,9 @@ void GameEngine::start() {
 void GameEngine::update() {
 	snake_.applyNextDir();
 
-	//实现多食物设置
+	//实现红色食物设置
 	auto realizeMoreFood = [this]() {
-		if (!settings_.isMoreFood()) { return; }
+		if (settings_.isNoRedFood()) { return; }
 
 		//蛇达到一定长度后，才开始生成红色食物（第一次达到时会立即生成）
 		if (snake_.length() - snake_.initLength < 15) { return; }
@@ -119,7 +119,7 @@ void GameEngine::handleCommand(GameCommand cmd) {
 
 	case GameCommand::TogglePause:
 		//实现暂停设置
-		if (!settings_.canPause()) { break; }
+		if (!settings_.isAllowPause()) { break; }
 
 		switch (info_.status()) {
 		case GameStatus::Active:
