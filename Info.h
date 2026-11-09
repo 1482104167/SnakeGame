@@ -28,9 +28,9 @@ public:
 
 private:
 	//初始移速，移速单次增量，增加移速次数上限，最大移速（移速数值含义为 每秒移动格数 * 1000）
-	static constexpr int initSpeed = 4125;
-	static constexpr int speedIncrement = 75;
-	static constexpr int increaseSpeedMaxTimes = 20;
+	static constexpr int initSpeed = 3900;
+	static constexpr int speedIncrement = 100;
+	static constexpr int increaseSpeedMaxTimes = 15;
 	static constexpr int maxSpeed = initSpeed + speedIncrement * increaseSpeedMaxTimes;
 
 	//单次分数增量
