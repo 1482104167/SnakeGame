@@ -24,7 +24,7 @@ public:
 	//获取当前蛇尾坐标
 	Point<int> tail() const;
 	//获取下一帧蛇头坐标
-	Point<int> nextHead() const;
+	Point<int> nextHead();
 	//增加蛇头
 	void addHead(Point<int> nextHead);
 	//删除蛇尾
