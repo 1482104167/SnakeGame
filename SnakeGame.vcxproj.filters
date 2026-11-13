@@ -41,7 +41,13 @@
     <ClCompile Include="Input.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Pages.cpp">
+    <ClCompile Include="EnteringPage.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayingPage.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsPage.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,7 +91,13 @@
     <ClInclude Include="PageBase.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Pages.h">
+    <ClInclude Include="EnteringPage.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingPage.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsPage.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

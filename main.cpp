@@ -1,8 +1,8 @@
 ﻿//main.cpp
 #include "Console.h"
+#include "EnteringPage.h"
 #include "GameEngine.h"
 #include "PageBase.h"
-#include "Pages.h"
 #include "Renderer.h"
 #include "SysTimerRes.h"
 
@@ -22,7 +22,10 @@ int main() {
 
 	std::unique_ptr<PageBase> page = std::make_unique<EnteringPage>();
 	while (page) {
-		page = page->run(ctx);
+		page->onEnter(ctx);
+		auto nextPage = page->run(ctx);
+		page->onExit(ctx);
+		page = std::move(nextPage);
 	}
 
 	Console::clear();
