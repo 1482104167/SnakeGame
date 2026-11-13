@@ -24,7 +24,7 @@ public:
 	//获取当前蛇尾坐标
 	Point<int> tail() const;
 	//获取下一帧蛇头坐标
-	Point<int> nextHead();
+	Point<int> nextHead() const;
 	//增加蛇头
 	void addHead(Point<int> nextHead);
 	//删除蛇尾
@@ -42,6 +42,5 @@ private:
 
 	std::queue<Point<int>> snake_;
 	std::queue<Direction> pendingDirs_;
-	std::mutex dirMutex_;
 	Direction dir_ = Direction::Up;
 };

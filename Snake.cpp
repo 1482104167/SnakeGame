@@ -30,11 +30,9 @@ Point<int> Snake::tail() const {
 	return Point(0, 0);
 }
 
-Point<int> Snake::nextHead() {
+Point<int> Snake::nextHead() const {
 	int dx = 0;
 	int dy = 0;
-
-	std::lock_guard<std::mutex> lock(dirMutex_);
 
 	switch (dir_) {
 	case Direction::Up:		--dy; break;
@@ -57,8 +55,6 @@ void Snake::delTail() {
 }
 
 void Snake::pushPendingDirs(Direction newDir) {
-	std::lock_guard<std::mutex> lock(dirMutex_);
-
 	Direction lastDir = pendingDirs_.empty() ? dir_ : pendingDirs_.back();
 
 	//拦截相同或相反的方向
@@ -80,8 +76,6 @@ void Snake::clearPendingDirs() {
 }
 
 void Snake::applyNextDir() {
-	std::lock_guard<std::mutex> lock(dirMutex_);
-
 	if (!pendingDirs_.empty()) {
 		dir_ = pendingDirs_.front();
 		pendingDirs_.pop();

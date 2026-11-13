@@ -135,21 +135,15 @@ void PlayingPage::mainLoop(GameContext& ctx) {
 	auto lastUpdate = ch::steady_clock::now();
 	auto interval = normalInterval() / 2;
 
-	//创建一个线程，单独处理按键输入
-	std::jthread handleKeyInput([&](std::stop_token st) {
-		while (!st.stop_requested()) {
-			if (auto key = Input::pullKey()) {
-				if (auto cmd = toGameCommand(*key)) {
-					engine.handleCommand(*cmd);
-				}
-			}
-
-			std::this_thread::sleep_for(ch::milliseconds(5));
-		}
-	});
-
 	while (true) {
 		std::this_thread::sleep_for(ch::milliseconds(5));
+
+		//处理按键输入
+		while (auto key = Input::pullKey()) {
+			if (auto cmd = toGameCommand(*key)) {
+				engine.handleCommand(*cmd);
+			}
+		}
 
 		//处理游戏状态
 		switch (GameStatus status = info.status()) {

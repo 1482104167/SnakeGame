@@ -38,5 +38,5 @@ private:
 
 	int speed_ = initSpeed;
 	int score_ = 0;
-	std::atomic<GameStatus> status_ = GameStatus::Idle;
+	GameStatus status_ = GameStatus::Idle;
 };

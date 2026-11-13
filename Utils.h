@@ -19,7 +19,7 @@ namespace utils {
 			return dis(gen);
 		}
 		else if constexpr (std::is_floating_point_v<T>) {
-			std::uniform_int_distribution<T> dis(minVal, maxVal);
+			std::uniform_real_distribution<T> dis(minVal, maxVal);
 			return dis(gen);
 		}
 		else {
