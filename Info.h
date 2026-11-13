@@ -1,8 +1,6 @@
 ﻿//Info.h
 #pragma once
 
-#include <atomic>
-
 //游戏状态
 enum class GameStatus : unsigned char {
 	Idle, Active, Lose, Win, Pause, Quit
@@ -27,11 +25,10 @@ public:
 	void increaseScore();
 
 private:
-	//初始移速，移速单次增量，增加移速次数上限，最大移速（移速数值含义为 每秒移动格数 * 1000）
+	//初始移速，移速单次增量，最大移速（移速数值含义为 每秒移动格数 * 1000）
 	static constexpr int initSpeed = 3900;
 	static constexpr int speedIncrement = 100;
-	static constexpr int increaseSpeedMaxTimes = 15;
-	static constexpr int maxSpeed = initSpeed + speedIncrement * increaseSpeedMaxTimes;
+	static constexpr int maxSpeed = initSpeed + speedIncrement * 15;
 
 	//单次分数增量
 	static constexpr int scoreIncrement = 5;

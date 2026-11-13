@@ -2,7 +2,7 @@
 #pragma once
 
 #include "Point.h"
-#include <mutex>
+#include <deque>
 #include <queue>
 
 //方向
@@ -40,7 +40,7 @@ private:
 	//待处理方向队列最大长度（允许缓存一定数量方向，用于优化操作手感）
 	static constexpr size_t pendingDirsMaxSize = 3;
 
-	std::queue<Point<int>> snake_;
+	std::deque<Point<int>> snake_;
 	std::queue<Direction> pendingDirs_;
 	Direction dir_ = Direction::Up;
 };

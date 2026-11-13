@@ -42,10 +42,10 @@ void GameEngine::update() {
 	//实现无界设置
 	if (settings_.isUnbounded()) {
 		auto& [x, y] = nextHead;
-		if (x == 0) { x = map_.cols - 2; }
-		else if (x == map_.cols - 1) { x = 1; }
-		else if (y == 0) { y = map_.rows - 2; }
-		else if (y == map_.rows - 1) { y = 1; }
+		if (x <= 0) { x = map_.cols - 2; }
+		else if (x >= map_.cols - 1) { x = 1; }
+		if (y <= 0) { y = map_.rows - 2; }
+		else if (y >= map_.rows - 1) { y = 1; }
 	}
 
 	//实现红色食物设置

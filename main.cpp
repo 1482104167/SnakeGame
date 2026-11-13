@@ -8,12 +8,11 @@
 
 import std;
 
-//全局对象声明
-GameEngine engine;
-Renderer renderer;
-GameContext ctx = { engine, renderer };
-
 int main() {
+	GameEngine engine;
+	Renderer renderer;
+	GameContext ctx = { engine, renderer };
+
 	Console::setCursorVis(false);
 
 	//提高系统计时器分辨率，使 sleep 延时更精确

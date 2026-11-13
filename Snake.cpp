@@ -6,7 +6,7 @@
 import std;
 
 void Snake::reset() {
-	snake_ = {};
+	snake_.clear();
 	clearPendingDirs();
 	dir_ = Direction::Up;
 }
@@ -16,16 +16,15 @@ int Snake::length() const {
 }
 
 Point<int> Snake::head() const {
-	//注意队尾代表蛇头，队首代表蛇尾，下同
 	if (!snake_.empty()) {
-		return snake_.back();
+		return snake_.front();
 	}
 	return Point(0, 0);
 }
 
 Point<int> Snake::tail() const {
 	if (!snake_.empty()) {
-		return snake_.front();
+		return snake_.back();
 	}
 	return Point(0, 0);
 }
@@ -45,12 +44,12 @@ Point<int> Snake::nextHead() const {
 }
 
 void Snake::addHead(Point<int> nextHead) {
-	snake_.push(nextHead);
+	snake_.push_front(nextHead);
 }
 
 void Snake::delTail() {
 	if (!snake_.empty()) {
-		snake_.pop();
+		snake_.pop_back();
 	}
 }
 
