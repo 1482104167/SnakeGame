@@ -1,28 +1,28 @@
-﻿//EnteringPage.cpp
-#include "EnteringPage.h"
+﻿//LobbyPage.cpp
+#include "LobbyPage.h"
 
 #include "Console.h"
 #include "Input.h"
 #include "PageBase.h"
-#include "PlayingPage.h"
+#include "PlayPage.h"
 #include "Renderer.h"
 #include "SettingsPage.h"
 
 import std;
 
-void EnteringPage::onEnter(GameContext& ctx) {
+void LobbyPage::onEnter(GameContext& ctx) {
 	auto& renderer = ctx.renderer;
 
 	renderer.drawEnterMessage();
 }
 
-void EnteringPage::onExit(GameContext& ctx) {
+void LobbyPage::onExit(GameContext& ctx) {
 	auto& renderer = ctx.renderer;
 
 	renderer.clearEnterMessage();
 }
 
-std::unique_ptr<PageBase> EnteringPage::run(GameContext& ctx) {
+std::unique_ptr<PageBase> LobbyPage::run(GameContext& ctx) {
 	auto& renderer = ctx.renderer;
 
 	Input::flush();
@@ -30,7 +30,7 @@ std::unique_ptr<PageBase> EnteringPage::run(GameContext& ctx) {
 	while (true) {
 		switch (Input::waitKey()) {
 		case 'e': case 'E':
-			return std::make_unique<PlayingPage>();
+			return std::make_unique<PlayPage>();
 		case 'r': case 'R':
 			return std::make_unique<SettingsPage>();
 		case 'q': case 'Q':
@@ -47,7 +47,7 @@ std::unique_ptr<PageBase> EnteringPage::run(GameContext& ctx) {
 			switch (int key = Input::waitKey()) {
 			case ' ':
 				Console::clear();
-				return std::make_unique<EnteringPage>();
+				return std::make_unique<LobbyPage>();
 			default:
 				Input::pushKey(key);
 			}

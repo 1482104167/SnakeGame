@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EnteringPage.cpp" />
+    <ClCompile Include="LobbyPage.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="PlayingPage.cpp" />
+    <ClCompile Include="PlayPage.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="SettingsPage.cpp" />
     <ClCompile Include="SysTimerRes.cpp" />
@@ -34,13 +34,13 @@
     <ClCompile Include="Info.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EnteringPage.h" />
+    <ClInclude Include="LobbyPage.h" />
     <ClInclude Include="GameCommand.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="PageBase.h" />
-    <ClInclude Include="PlayingPage.h" />
+    <ClInclude Include="PlayPage.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SettingsPage.h" />
     <ClInclude Include="SysTimerRes.h" />

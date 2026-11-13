@@ -1,7 +1,7 @@
 ﻿//main.cpp
 #include "Console.h"
-#include "EnteringPage.h"
 #include "GameEngine.h"
+#include "LobbyPage.h"
 #include "PageBase.h"
 #include "Renderer.h"
 #include "SysTimerRes.h"
@@ -20,7 +20,7 @@ int main() {
 	SysTimerRes timerRes(1);
 	std::this_thread::sleep_for(std::chrono::milliseconds(300));
 
-	std::unique_ptr<PageBase> page = std::make_unique<EnteringPage>();
+	std::unique_ptr<PageBase> page = std::make_unique<LobbyPage>();
 	while (page) {
 		page->onEnter(ctx);
 		auto nextPage = page->run(ctx);

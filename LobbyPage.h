@@ -1,10 +1,10 @@
-﻿//EnteringPage.h
+﻿//LobbyPage.h
 #pragma once
 
 #include "PageBase.h"
 #include <memory>
 
-class EnteringPage : public PageBase {
+class LobbyPage : public PageBase {
 public:
 	void onEnter(GameContext& ctx) override;
 	std::unique_ptr<PageBase> run(GameContext& ctx) override;

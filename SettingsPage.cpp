@@ -1,9 +1,9 @@
 ﻿//SettingsPage.cpp
 #include "SettingsPage.h"
 
-#include "EnteringPage.h"
 #include "GameEngine.h"
 #include "Input.h"
+#include "LobbyPage.h"
 #include "PageBase.h"
 #include "Renderer.h"
 
@@ -55,7 +55,7 @@ std::unique_ptr<PageBase> SettingsPage::run(GameContext& ctx) {
 			toggleSetting[nowItem]();
 			break;
 		case 'q': case 'Q':
-			return std::make_unique<EnteringPage>();
+			return std::make_unique<LobbyPage>();
 		default:
 			continue;
 		}

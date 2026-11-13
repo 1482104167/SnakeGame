@@ -1,17 +1,17 @@
-﻿//PlayingPage.cpp
-#include "PlayingPage.h"
+﻿//PlayPage.cpp
+#include "PlayPage.h"
 
-#include "EnteringPage.h"
 #include "GameCommand.h"
 #include "GameEngine.h"
 #include "Info.h"
 #include "Input.h"
+#include "LobbyPage.h"
 #include "PageBase.h"
 #include "Renderer.h"
 
 import std;
 
-void PlayingPage::onEnter(GameContext& ctx) {
+void PlayPage::onEnter(GameContext& ctx) {
 	auto& engine = ctx.engine;
 	auto& renderer = ctx.renderer;
 	auto& map = engine.map();
@@ -22,7 +22,7 @@ void PlayingPage::onEnter(GameContext& ctx) {
 	renderer.drawStartMessage();
 }
 
-void PlayingPage::onExit(GameContext& ctx) {
+void PlayPage::onExit(GameContext& ctx) {
 	auto& engine = ctx.engine;
 	auto& renderer = ctx.renderer;
 	auto& map = engine.map();
@@ -32,7 +32,7 @@ void PlayingPage::onExit(GameContext& ctx) {
 	renderer.clearMapWall(map);
 }
 
-std::unique_ptr<PageBase> PlayingPage::run(GameContext& ctx) {
+std::unique_ptr<PageBase> PlayPage::run(GameContext& ctx) {
 	auto& engine = ctx.engine;
 	auto& renderer = ctx.renderer;
 	auto& map = engine.map();
@@ -51,7 +51,7 @@ std::unique_ptr<PageBase> PlayingPage::run(GameContext& ctx) {
 
 			switch (GameStatus status = info.status()) {
 			case GameStatus::Quit:
-				return std::make_unique<EnteringPage>();
+				return std::make_unique<LobbyPage>();
 			default:
 				renderer.drawOverAnimation(map, status);
 			}
@@ -63,20 +63,20 @@ std::unique_ptr<PageBase> PlayingPage::run(GameContext& ctx) {
 			while (true) {
 				switch (Input::waitKey()) {
 				case 'e': case 'E':
-					return std::make_unique<PlayingPage>();
+					return std::make_unique<PlayPage>();
 				case 'q': case 'Q':
-					return std::make_unique<EnteringPage>();
+					return std::make_unique<LobbyPage>();
 				}
 			}
 
 			break;
 		case 'q': case 'Q':
-			return std::make_unique<EnteringPage>();
+			return std::make_unique<LobbyPage>();
 		}
 	}
 }
 
-void PlayingPage::mainLoop(GameContext& ctx) {
+void PlayPage::mainLoop(GameContext& ctx) {
 	auto& engine = ctx.engine;
 	auto& renderer = ctx.renderer;
 	auto& map = engine.map();

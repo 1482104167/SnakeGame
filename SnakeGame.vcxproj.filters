@@ -41,10 +41,10 @@
     <ClCompile Include="Input.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="EnteringPage.cpp">
+    <ClCompile Include="LobbyPage.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="PlayingPage.cpp">
+    <ClCompile Include="PlayPage.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="SettingsPage.cpp">
@@ -91,10 +91,10 @@
     <ClInclude Include="PageBase.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="EnteringPage.h">
+    <ClInclude Include="LobbyPage.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="PlayingPage.h">
+    <ClInclude Include="PlayPage.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="SettingsPage.h">
